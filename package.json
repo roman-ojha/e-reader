@@ -8,7 +8,11 @@
     "dev": "env-cmd -f .env.dev nodemon index.ts",
     "start": "env-cmd -f .env.prod ts-node index.ts",
     "prisma:migrate": "env-cmd -f .env.dev npx prisma migrate dev --name",
-    "prisma:generate": "npx prisma generate"
+    "prisma:generate": "npx prisma generate",
+    "prisma:studio": "env-cmd -f .env.dev npx prisma studio"
+  },
+  "prisma": {
+    "seed": "env-cmd -f .env.dev ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "repository": {
     "type": "git",
@@ -26,6 +30,7 @@
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",
     "express-graphql": "^0.12.0",
+    "graphql": "^16.6.0",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
