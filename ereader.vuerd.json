@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 2000,
     "height": 2000,
-    "scrollTop": -284,
-    "scrollLeft": -384,
-    "zoomLevel": 0.6,
+    "scrollTop": -2,
+    "scrollLeft": 0,
+    "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -786,9 +786,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 1108.1665,
-          "top": 449.6671,
-          "zIndex": 18,
+          "left": 1068.1667,
+          "top": 481.8896,
+          "zIndex": 22,
           "widthName": 121.22802734375,
           "widthComment": 60,
           "color": "#FF9800"
@@ -1959,8 +1959,8 @@
           "columnIds": [
             "7f64b137-4c1b-4905-bdb1-3a3f50f97b41"
           ],
-          "x": 1108.1665,
-          "y": 578.2921,
+          "x": 1068.1667,
+          "y": 610.5146,
           "direction": "left"
         },
         "constraintName": "fk_user_to_userpurchasedbook",
@@ -2184,7 +2184,7 @@
           "columnIds": [
             "ab67a257-ad42-4219-9059-de09c831a956"
           ],
-          "x": 765.17821875,
+          "x": 664.422359375,
           "y": 265.5,
           "direction": "bottom"
         },
@@ -2211,7 +2211,7 @@
             "ab67a257-ad42-4219-9059-de09c831a956"
           ],
           "x": 966.6899375,
-          "y": 138.75,
+          "y": 107.0625,
           "direction": "right"
         },
         "end": {
@@ -2237,7 +2237,7 @@
             "ab67a257-ad42-4219-9059-de09c831a956"
           ],
           "x": 966.6899375,
-          "y": 37.35,
+          "y": 43.6875,
           "direction": "right"
         },
         "end": {
@@ -2263,7 +2263,7 @@
             "ab67a257-ad42-4219-9059-de09c831a956"
           ],
           "x": 966.6899375,
-          "y": 189.45,
+          "y": 170.4375,
           "direction": "right"
         },
         "end": {
@@ -2289,7 +2289,7 @@
             "ab67a257-ad42-4219-9059-de09c831a956"
           ],
           "x": 966.6899375,
-          "y": 240.14999999999998,
+          "y": 233.8125,
           "direction": "right"
         },
         "end": {
@@ -2314,17 +2314,17 @@
           "columnIds": [
             "ab67a257-ad42-4219-9059-de09c831a956"
           ],
-          "x": 966.6899375,
-          "y": 88.05000000000001,
-          "direction": "right"
+          "x": 865.934078125,
+          "y": 265.5,
+          "direction": "bottom"
         },
         "end": {
           "tableId": "949f3058-bf59-40ea-8a7b-d6dd2a9a8e65",
           "columnIds": [
             "a1c96bb3-5931-48fe-83ae-f7cb61343fbc"
           ],
-          "x": 1108.1665,
-          "y": 492.5421,
+          "x": 1068.1667,
+          "y": 524.7646,
           "direction": "left"
         },
         "constraintName": "fk_book_to_userpurchasedbook",
