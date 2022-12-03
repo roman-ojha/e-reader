@@ -665,7 +665,7 @@
         "id": "da9babf5-0d9d-433b-95e4-baf51b9b3f08"
       },
       {
-        "name": "UserPurchasedBook",
+        "name": "PurchasedBook",
         "comment": "",
         "columns": [
           {
@@ -692,6 +692,29 @@
             "id": "796cb628-439f-4a67-a32c-1a76c3c68810"
           },
           {
+            "name": "book_id",
+            "comment": "",
+            "dataType": "int",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "a6888ca3-664e-4cfa-8253-a56317afc5f5"
+          },
+          {
             "name": "user_id",
             "comment": "",
             "dataType": "int",
@@ -713,29 +736,6 @@
               "widthDefault": 60
             },
             "id": "7f64b137-4c1b-4905-bdb1-3a3f50f97b41"
-          },
-          {
-            "name": "book_store_id",
-            "comment": "",
-            "dataType": "int",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 83.6689453125,
-              "widthComment": 60,
-              "widthDataType": 60,
-              "widthDefault": 60
-            },
-            "id": "a1c96bb3-5931-48fe-83ae-f7cb61343fbc"
           },
           {
             "name": "created_at",
@@ -788,8 +788,8 @@
           "active": false,
           "left": 1068.1667,
           "top": 481.8896,
-          "zIndex": 12,
-          "widthName": 121.22802734375,
+          "zIndex": 42,
+          "widthName": 93.78076171875,
           "widthComment": 60,
           "color": "#FF9800"
         },
@@ -1873,7 +1873,7 @@
           "active": false,
           "left": 548.111,
           "top": 37.5553,
-          "zIndex": 17,
+          "zIndex": 28,
           "widthName": 60,
           "widthComment": 60,
           "color": "#F44336"
@@ -2321,7 +2321,7 @@
         "end": {
           "tableId": "949f3058-bf59-40ea-8a7b-d6dd2a9a8e65",
           "columnIds": [
-            "a1c96bb3-5931-48fe-83ae-f7cb61343fbc"
+            "a6888ca3-664e-4cfa-8253-a56317afc5f5"
           ],
           "x": 1068.1667,
           "y": 524.7646,
@@ -2329,7 +2329,7 @@
         },
         "constraintName": "fk_book_to_userpurchasedbook",
         "visible": true,
-        "id": "038b08d7-6c7f-476e-ba79-b3988078cf90"
+        "id": "07e51c28-28e1-45e7-9407-e0e29ee1bc35"
       }
     ]
   }
