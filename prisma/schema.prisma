@@ -18,6 +18,6 @@ model User {
   email      String
   password   String
   is_admin   Boolean  @default(false)
-  created_at DateTime
-  updated_at DateTime
+  createdAt  DateTime @default(now())
+  updateAt   DateTime @updatedAt
 }
