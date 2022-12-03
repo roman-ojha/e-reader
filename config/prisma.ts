@@ -22,4 +22,4 @@ async function disconnect() {
     });
 }
 
-export { connect, disconnect };
+export { connect, disconnect, prisma };

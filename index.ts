@@ -1,14 +1,16 @@
 import express from "express";
-import { PrismaClient } from "@prisma/client";
-import { connect, disconnect } from "./config/db.js";
+import { connect, disconnect, prisma } from "./config/prisma.js";
 import log from "./utils/console.js";
-const prisma = new PrismaClient();
+import router from "routes/index.js";
 
 const port = process.env.APP_PORT || 8000;
 const app = express();
 
 // Database connection
 connect();
+
+// using router
+app.use(router);
 
 async function main() {
   const createUser = await prisma.user.create({
@@ -23,16 +25,19 @@ async function main() {
   log.success(createUser, "development");
 }
 
-main()
-  .catch((err) => {
-    log.error(err, "development");
-  })
-  .finally(async () => {
-    await disconnect();
-  });
+// main()
+//   .catch((err) => {
+//     log.error(err, "development");
+//   })
+//   .finally(async () => {
+//     await disconnect();
+//   });
 
 app.listen(port, () => {
-  console.log(`
-  Express E-Reader ===========
-  Local: http://127.0.0.1:${port}`);
+  log.success(
+    `
+Express E-Reader ===========
+Local: http://127.0.0.1:${port}`,
+    "development"
+  );
 });
