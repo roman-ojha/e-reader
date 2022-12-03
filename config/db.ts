@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import log from "../utils/console.js";
 const prisma = new PrismaClient();
 
 async function connect() {
@@ -8,14 +9,17 @@ async function connect() {
       console.log("Database connected");
     })
     .catch((err) => {
-      console.log(err);
+      log.error(err, "development");
     });
 }
 
 async function disconnect() {
-  await prisma.$disconnect().catch((err) => {
-    console.log(err);
-  });
+  await prisma
+    .$disconnect()
+    .then(() => {})
+    .catch((err) => {
+      log.error(err, "development");
+    });
 }
 
-export { connect };
+export { connect, disconnect };

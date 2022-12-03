@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "env-cmd -f .env.dev nodemon index.ts",
-    "start": "env-cmd -f .env.dev ts-node index.ts",
+    "start": "env-cmd -f .env.prod ts-node index.ts",
     "prisma:migrate": "env-cmd -f .env.dev npx prisma migrate dev --name init"
   },
   "repository": {
