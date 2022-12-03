@@ -92,6 +92,8 @@ model Genere {
   name     String
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+
+  @@index([name])
 }
 
 model PurchasedBook {
@@ -114,6 +116,8 @@ model BookReview {
   review   String?
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+
+  @@index([rate])
 }
 
 model StoreBookReview {
@@ -126,6 +130,8 @@ model StoreBookReview {
   review      String?
   createAt    DateTime  @default(now())
   updateAt    DateTime  @updatedAt
+
+  @@index([rate])
 }
 
 model CurrentlyReading {
