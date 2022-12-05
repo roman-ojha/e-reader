@@ -3,6 +3,9 @@ import { connect, disconnect, prisma } from "./config/prisma.js";
 import log from "./utils/console.js";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+import typeDefs from "./schema/index.js";
+import resolvers from "./resolvers";
+import { createContext } from "./graphql/context.js";
 
 const port = process.env.APP_PORT || 8000;
 

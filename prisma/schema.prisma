@@ -13,7 +13,7 @@ generator client {
 generator graphql {
   provider = "graphql-schema-generator"
   // createCRUD = "true"
-  output   = "../schema/Model.graphql"
+  output   = "../schema"
 }
 
 datasource db {

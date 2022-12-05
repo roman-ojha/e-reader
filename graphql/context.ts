@@ -1,11 +1,23 @@
 import { PrismaClient } from "@prisma/client";
-
-export interface Context {
-  prisma: PrismaClient;
-}
-
+import { StandaloneServerContextFunctionArgument } from "@apollo/server/standalone";
 const prisma = new PrismaClient();
 
-export const context: Context = {
-  prisma: prisma,
-};
+type Request = StandaloneServerContextFunctionArgument["req"];
+type Response = StandaloneServerContextFunctionArgument["res"];
+
+export interface Context {
+  req: Request;
+  res: Response;
+  db: PrismaClient;
+}
+
+export async function createContext({
+  req,
+  res,
+}: StandaloneServerContextFunctionArgument): Promise<Context> {
+  return {
+    req,
+    res,
+    db: prisma,
+  };
+}
