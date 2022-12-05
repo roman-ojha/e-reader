@@ -5,6 +5,7 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -50,7 +51,7 @@ export type Book = {
   author: Author;
   createAt: Scalars['DateTime'];
   description?: Maybe<Scalars['String']>;
-  genres: Array<Genere>;
+  genres: Array<Genre>;
   id: Scalars['ID'];
   langauge?: Maybe<Scalars['String']>;
   page: Scalars['Int'];
@@ -101,13 +102,23 @@ export type FinishedReading = {
   user: User;
 };
 
-export type Genere = {
-  __typename?: 'Genere';
+export type Genre = {
+  __typename?: 'Genre';
   books: Array<Book>;
   createAt: Scalars['DateTime'];
   id: Scalars['ID'];
   name: Scalars['String'];
   updateAt: Scalars['DateTime'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  addUser?: Maybe<Array<Maybe<User>>>;
+};
+
+
+export type MutationAddUserArgs = {
+  username: Scalars['String'];
 };
 
 export type PurchasedBook = {
@@ -117,6 +128,11 @@ export type PurchasedBook = {
   id: Scalars['ID'];
   updateAt: Scalars['DateTime'];
   user: User;
+};
+
+export type Query = {
+  __typename?: 'Query';
+  getUser?: Maybe<User>;
 };
 
 export enum Role {
@@ -234,10 +250,12 @@ export type ResolversTypes = ResolversObject<{
   CurrentlyReading: ResolverTypeWrapper<CurrentlyReading>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   FinishedReading: ResolverTypeWrapper<FinishedReading>;
-  Genere: ResolverTypeWrapper<Genere>;
+  Genre: ResolverTypeWrapper<Genre>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  Mutation: ResolverTypeWrapper<{}>;
   PurchasedBook: ResolverTypeWrapper<PurchasedBook>;
+  Query: ResolverTypeWrapper<{}>;
   Role: Role;
   StoreBookReview: ResolverTypeWrapper<StoreBookReview>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -255,10 +273,12 @@ export type ResolversParentTypes = ResolversObject<{
   CurrentlyReading: CurrentlyReading;
   DateTime: Scalars['DateTime'];
   FinishedReading: FinishedReading;
-  Genere: Genere;
+  Genre: Genre;
   ID: Scalars['ID'];
   Int: Scalars['Int'];
+  Mutation: {};
   PurchasedBook: PurchasedBook;
+  Query: {};
   StoreBookReview: StoreBookReview;
   String: Scalars['String'];
   User: User;
@@ -291,7 +311,7 @@ export type BookResolvers<ContextType = Context, ParentType extends ResolversPar
   author?: Resolver<ResolversTypes['Author'], ParentType, ContextType>;
   createAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  genres?: Resolver<Array<ResolversTypes['Genere']>, ParentType, ContextType>;
+  genres?: Resolver<Array<ResolversTypes['Genre']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   langauge?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   page?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -347,13 +367,17 @@ export type FinishedReadingResolvers<ContextType = Context, ParentType extends R
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type GenereResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Genere'] = ResolversParentTypes['Genere']> = ResolversObject<{
+export type GenreResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Genre'] = ResolversParentTypes['Genre']> = ResolversObject<{
   books?: Resolver<Array<ResolversTypes['Book']>, ParentType, ContextType>;
   createAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updateAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  addUser?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<MutationAddUserArgs, 'username'>>;
 }>;
 
 export type PurchasedBookResolvers<ContextType = Context, ParentType extends ResolversParentTypes['PurchasedBook'] = ResolversParentTypes['PurchasedBook']> = ResolversObject<{
@@ -363,6 +387,10 @@ export type PurchasedBookResolvers<ContextType = Context, ParentType extends Res
   updateAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+  getUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
 }>;
 
 export type StoreBookReviewResolvers<ContextType = Context, ParentType extends ResolversParentTypes['StoreBookReview'] = ResolversParentTypes['StoreBookReview']> = ResolversObject<{
@@ -405,8 +433,10 @@ export type Resolvers<ContextType = Context> = ResolversObject<{
   CurrentlyReading?: CurrentlyReadingResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
   FinishedReading?: FinishedReadingResolvers<ContextType>;
-  Genere?: GenereResolvers<ContextType>;
+  Genre?: GenreResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   PurchasedBook?: PurchasedBookResolvers<ContextType>;
+  Query?: QueryResolvers<ContextType>;
   StoreBookReview?: StoreBookReviewResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 }>;

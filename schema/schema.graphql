@@ -43,7 +43,7 @@ type Book {
   createAt: DateTime!
   updateAt: DateTime!
   BookStore: BookStore
-  genres: [Genere!]!
+  genres: [Genre!]!
   PurchasedUsers: [PurchasedBook!]!
   BookReviewedUsers: [BookReview!]!
   CurrentlyReadingUsers: [CurrentlyReading!]!
@@ -78,7 +78,7 @@ type BookStore {
   StoreBookReview: [StoreBookReview!]!
 }
 
-type Genere {
+type Genre {
   id: ID!
   books: [Book!]!
   name: String!

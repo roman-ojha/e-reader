@@ -59,7 +59,7 @@ model Book {
   createAt              DateTime           @default(now())
   updateAt              DateTime           @updatedAt
   BookStore             BookStore?
-  genres                Genere[]
+  genres                Genre[]
   PurchasedUsers        PurchasedBook[]
   BookReviewedUsers     BookReview[]
   CurrentlyReadingUsers CurrentlyReading[]
@@ -102,7 +102,7 @@ model BookStore {
   @@index([price, discount])
 }
 
-model Genere {
+model Genre {
   id       String   @id @default(uuid())
   books    Book[]
   name     String

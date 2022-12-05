@@ -1,10 +1,9 @@
-import express from "express";
-import { connect, disconnect, prisma } from "./config/prisma.js";
+import { connect } from "./config/prisma.js";
 import log from "./utils/console.js";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import typeDefs from "./schema/index.js";
-import resolvers from "./resolvers";
+import resolvers from "./resolvers/index.js";
 import { createContext } from "./graphql/context.js";
 
 const port = process.env.APP_PORT || 8000;
@@ -17,13 +16,13 @@ const server = new ApolloServer({
   resolvers,
 });
 
-import "./config/db.js";
-
 startStandaloneServer(server, {
   listen: { port: 8000 },
   context: createContext,
 })
   .then(({ url }) => {
-    log.success("🚀  Server ready at: ${url}", "development");
+    log.success(`🚀  Server ready at: ${url}`, "development");
   })
-  .catch((err) => {});
+  .catch((err) => {
+    log.error(err, "development");
+  });
