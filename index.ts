@@ -6,11 +6,6 @@ import typeDefs from "./schema/index.js";
 import resolvers from "./resolvers/index.js";
 import { createContext } from "./graphql/context.js";
 
-const port = process.env.APP_PORT || 8000;
-
-// Database connection
-connect();
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -22,6 +17,8 @@ startStandaloneServer(server, {
 })
   .then(({ url }) => {
     log.success(`🚀  Server ready at: ${url}`, "development");
+    // Database connection
+    connect();
   })
   .catch((err) => {
     log.error(err, "development");

@@ -1,3 +1,12 @@
+input addUserInput {
+  username: String!
+  first_name: String
+  last_name: String
+  email: String!
+  password: String!
+  role: Role!
+}
+
 type Mutation {
-  addUser(username: String!): [User]
+  addUser(addUserCriteria: addUserInput!): User
 }

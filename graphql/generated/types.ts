@@ -113,12 +113,12 @@ export type Genre = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addUser?: Maybe<Array<Maybe<User>>>;
+  addUser?: Maybe<User>;
 };
 
 
 export type MutationAddUserArgs = {
-  username: Scalars['String'];
+  addUserCriteria: AddUserInput;
 };
 
 export type PurchasedBook = {
@@ -168,6 +168,15 @@ export type User = {
   password: Scalars['String'];
   role: Role;
   updateAt: Scalars['DateTime'];
+  username: Scalars['String'];
+};
+
+export type AddUserInput = {
+  email: Scalars['String'];
+  first_name?: InputMaybe<Scalars['String']>;
+  last_name?: InputMaybe<Scalars['String']>;
+  password: Scalars['String'];
+  role: Role;
   username: Scalars['String'];
 };
 
@@ -260,6 +269,7 @@ export type ResolversTypes = ResolversObject<{
   StoreBookReview: ResolverTypeWrapper<StoreBookReview>;
   String: ResolverTypeWrapper<Scalars['String']>;
   User: ResolverTypeWrapper<User>;
+  addUserInput: AddUserInput;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -282,6 +292,7 @@ export type ResolversParentTypes = ResolversObject<{
   StoreBookReview: StoreBookReview;
   String: Scalars['String'];
   User: User;
+  addUserInput: AddUserInput;
 }>;
 
 export type AddToCardResolvers<ContextType = Context, ParentType extends ResolversParentTypes['AddToCard'] = ResolversParentTypes['AddToCard']> = ResolversObject<{
@@ -377,7 +388,7 @@ export type GenreResolvers<ContextType = Context, ParentType extends ResolversPa
 }>;
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
-  addUser?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, RequireFields<MutationAddUserArgs, 'username'>>;
+  addUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationAddUserArgs, 'addUserCriteria'>>;
 }>;
 
 export type PurchasedBookResolvers<ContextType = Context, ParentType extends ResolversParentTypes['PurchasedBook'] = ResolversParentTypes['PurchasedBook']> = ResolversObject<{
