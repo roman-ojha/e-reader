@@ -12,7 +12,8 @@
     "graphql:generate": "ts-node ./utils/generateGQLSchema.ts",
     "gqlTs:generate": "graphql-codegen --config codegen.yml",
     "generate": "yarn prisma:generate && yarn graphql:generate && yarn gqlTs:generate",
-    "prisma:studio": "env-cmd -f .env.dev npx prisma studio"
+    "prisma:studio": "env-cmd -f .env.dev npx prisma studio",
+    "seed": "env-cmd -f .env.dev ts-node ./prisma/seed.ts"
   },
   "prisma": {
     "seed": "env-cmd -f .env.dev ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
