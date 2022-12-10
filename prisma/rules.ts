@@ -20,7 +20,7 @@ const rules = {
       },
       transformer: (field) => {
         // console.log(field);
-        console.log(field);
+        // console.log(field);
         return {
           ...field,
         };

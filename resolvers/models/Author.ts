@@ -5,7 +5,7 @@ export default <AuthorResolvers>{
     console.log(parent);
     return <any>ctx.db.user.findUnique({
       where: {
-        id: parent.userId,
+        // id: parent.userId,
       },
     });
   },

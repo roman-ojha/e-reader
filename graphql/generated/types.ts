@@ -39,7 +39,6 @@ export type Author = {
   id: Scalars['ID'];
   updateAt: Scalars['DateTime'];
   user: User;
-  userId: Scalars['Int'];
 };
 
 export type Book = {
@@ -330,7 +329,6 @@ export type AuthorResolvers<ContextType = Context, ParentType extends ResolversP
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   updateAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
-  userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
