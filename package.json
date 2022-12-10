@@ -30,6 +30,7 @@
   "homepage": "https://github.com/roman-ojha/e-reader#readme",
   "dependencies": {
     "@apollo/server": "^4.2.2",
+    "@prisma-korea/graphql-schema-generator": "^0.3.0",
     "@prisma/client": "^4.7.1",
     "@types/node": "^18.11.10",
     "env-cmd": "^10.1.0",
@@ -43,7 +44,6 @@
     "@graphql-codegen/cli": "^2.15.0",
     "@graphql-codegen/typescript": "^2.8.3",
     "@graphql-codegen/typescript-resolvers": "^2.7.8",
-    "@prisma-korea/graphql-schema-generator": "^0.3.0",
     "@types/express": "^4.17.14",
     "nodemon": "^2.0.20",
     "prisma": "^4.7.1",
