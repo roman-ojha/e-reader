@@ -15,4 +15,12 @@ export default <MutationResolvers>{
     });
     return <any>user;
   },
+  addAuthor: async (_, args, ctx, info) => {
+    const author = await ctx.db.author.create({
+      data: {
+        userId: args.userId,
+      },
+    });
+    return <any>author;
+  },
 };

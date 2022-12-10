@@ -132,7 +132,10 @@ type FinishedReading {
 }
 
 type Query {
-  getUser: User
+  getUsers: [User]
+  getUser(id: Int!): User
+  getAuthors: [Author]
+  getAuthor(id: Int!): Author
 }
 
 
@@ -147,5 +150,6 @@ input addUserInput {
 
 type Mutation {
   addUser(addUserCriteria: addUserInput!): User
+  addAuthor(userId: Int!): Author
 }
 

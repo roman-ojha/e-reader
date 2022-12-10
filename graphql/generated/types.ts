@@ -113,7 +113,13 @@ export type Genre = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addAuthor?: Maybe<Author>;
   addUser?: Maybe<User>;
+};
+
+
+export type MutationAddAuthorArgs = {
+  userId: Scalars['Int'];
 };
 
 
@@ -132,7 +138,20 @@ export type PurchasedBook = {
 
 export type Query = {
   __typename?: 'Query';
+  getAuthor?: Maybe<Author>;
+  getAuthors?: Maybe<Array<Maybe<Author>>>;
   getUser?: Maybe<User>;
+  getUsers?: Maybe<Array<Maybe<User>>>;
+};
+
+
+export type QueryGetAuthorArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryGetUserArgs = {
+  id: Scalars['Int'];
 };
 
 export enum Role {
@@ -388,6 +407,7 @@ export type GenreResolvers<ContextType = Context, ParentType extends ResolversPa
 }>;
 
 export type MutationResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  addAuthor?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType, RequireFields<MutationAddAuthorArgs, 'userId'>>;
   addUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationAddUserArgs, 'addUserCriteria'>>;
 }>;
 
@@ -401,7 +421,10 @@ export type PurchasedBookResolvers<ContextType = Context, ParentType extends Res
 }>;
 
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  getUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  getAuthor?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType, RequireFields<QueryGetAuthorArgs, 'id'>>;
+  getAuthors?: Resolver<Maybe<Array<Maybe<ResolversTypes['Author']>>>, ParentType, ContextType>;
+  getUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryGetUserArgs, 'id'>>;
+  getUsers?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>;
 }>;
 
 export type StoreBookReviewResolvers<ContextType = Context, ParentType extends ResolversParentTypes['StoreBookReview'] = ResolversParentTypes['StoreBookReview']> = ResolversObject<{

@@ -9,4 +9,5 @@ input addUserInput {
 
 type Mutation {
   addUser(addUserCriteria: addUserInput!): User
+  addAuthor(userId: Int!): Author
 }
