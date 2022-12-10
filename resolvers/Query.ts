@@ -14,5 +14,15 @@ export default <QueryResolvers>{
     });
     return user;
   },
-  getAuthor: (_, __, ctx, info) => {},
+  getAuthors: async (_, __, ctx, info) => {
+    const authors = await ctx.db.author.findMany();
+    return <any>authors;
+  },
+  getAuthor: async (_, args, ctx, info) => {
+    return await ctx.db.author.findUnique({
+      where: {
+        id: args.id,
+      },
+    });
+  },
 };
