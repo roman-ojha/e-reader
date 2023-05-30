@@ -1,9 +1,12 @@
 import { QueryResolvers, User } from "../graphql/generated/types";
+import selectRequestedFields from "../utils/selectRequestedFields.js";
 
 export default <QueryResolvers>{
   getUsers: async (_, args, ctx, info) => {
     // console.log(info.schema.getType("User"));
-    const users = await ctx.db.user.findMany();
+    const users = await ctx.db.user.findMany({
+      select: selectRequestedFields(info),
+    });
     return <any>users;
   },
   getUser: async (_, args, ctx, info) => {
@@ -15,7 +18,13 @@ export default <QueryResolvers>{
     return user;
   },
   getAuthors: async (_, __, ctx, info) => {
-    const authors = await ctx.db.author.findMany();
+    const authors = await ctx.db.author.findMany({
+      select: {
+        ...selectRequestedFields(info),
+        user: false,
+        userId: true,
+      },
+    });
     return <any>authors;
   },
   getAuthor: async (_, args, ctx, info) => {

@@ -1,12 +1,14 @@
 import { AuthorResolvers } from "../../graphql/generated/types";
+import selectRequestedFields from "../../utils/selectRequestedFields.js";
 
 export default <AuthorResolvers>{
   user: async (parent, args, ctx, info) => {
-    console.log(parent);
-    return <any>ctx.db.user.findUnique({
+    const user = await ctx.db.user.findUnique({
       where: {
-        // id: parent.userId,
+        id: (parent as any).userId,
       },
+      select: selectRequestedFields(info),
     });
+    return <any>user;
   },
 };
